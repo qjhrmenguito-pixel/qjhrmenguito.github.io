@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        body.dark {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        body.dark header {
+            background-color: #222;
+        }
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        body.dark nav a {
+            color: #f4f4f4;
+        }
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        body.dark section {
+            background-color: #444;
+            color: #f4f4f4;
+        }
+        #greeting {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        body.dark button {
+            background-color: #222;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        body.dark input, body.dark textarea {
+            background-color: #555;
+            color: #f4f4f4;
+            border-color: #777;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        body.dark footer {
+            background-color: #222;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Homepage</h1>
+        <p id="greeting">Loading greeting...</p>
+        <button id="themeToggle">Toggle Dark Mode</button>
+    </header>
+
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hello! I'm a web developer passionate about creating interactive websites. This homepage is built with HTML, CSS, and JavaScript to demonstrate functions and events.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            <li>HTML & CSS</li>
+            <li>JavaScript (Functions & Events)</li>
+            <li>Responsive Design</li>
+            <li>Problem-Solving</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contactForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 My Homepage. Built with JavaScript!</p>
+    </footer>
+
+    <script>
+        // Function to update the dynamic greeting based on the current time
+        function updateGreeting() {
+            const now = new Date();
+            const hour = now.getHours();
+            let greetingText = '';
+
+            if (hour < 12) {
+                greetingText = 'Good morning!';
+            } else if (hour < 18) {
+                greetingText = 'Good afternoon!';
+            } else {
+                greetingText = 'Good evening!';
+            }
+
+            document.getElementById('greeting').textContent = greetingText;
+        }
+
+        // Function to toggle between light and dark themes
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+        }
+
+        // Function to validate and handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            // Simple validation
+            if (!email.includes('@') || message.trim() === '') {
+                alert('Please enter a valid email and message.');
+                return;
+            }
+
+            // Simulate submission (in a real app, you'd send to a server)
+            alert('Message sent! Thank you for contacting me.');
+            document.getElementById('contactForm').reset();
+        }
+
+        // Event listeners
+        document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
+
+        // Initialize greeting on page load
+        window.addEventListener('load', updateGreeting);
+    </script>
+</body>
+</html>
